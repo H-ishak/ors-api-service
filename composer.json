@@ -1,0 +1,23 @@
+{
+    "name": "ishaker/ors-laravel-api",
+    "description": "a class to use OpenRouteService Api in laravel 8",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ishak hadjal",
+            "email": "ishak.hadjal@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "h-ishak\\ors-laravel-api\\": "src/"
+        }
+    },
+    
+    "require": {
+        "guzzlehttp/guzzle": "7.0",
+        "symfony/psr-http-message-bridge":"2.1.0"
+    }
+}
