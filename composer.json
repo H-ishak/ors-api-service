@@ -1,5 +1,5 @@
 {
-    "name": "ishaker/ors-laravel-api",
+    "name": "h-ishak/ors-api-service",
     "description": "a class to use OpenRouteService Api in laravel 8",
     "type": "library",
     "license": "MIT",
