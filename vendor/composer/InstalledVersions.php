@@ -27,12 +27,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'e50ea8bf4ced350b3c798453d2ec4aea4676b66d',
     'name' => 'ishaker/ors-laravel-api',
   ),
   'versions' => 
@@ -67,12 +67,12 @@ private static $installed = array (
     ),
     'ishaker/ors-laravel-api' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'e50ea8bf4ced350b3c798453d2ec4aea4676b66d',
     ),
     'psr/http-client' => 
     array (
