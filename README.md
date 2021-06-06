@@ -5,6 +5,9 @@ a simple Laravel package for the OpenRouteService Api
 
 This package allows you to consume OpenRouteService Api using laravel.
 
+```cli
+composer require h-ishak/ors-api-service
+```
 Once installed you can do stuff like this:
 
 ```php
