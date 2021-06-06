@@ -29,7 +29,7 @@ class OpenRouteService
 
     public function __construct()
     {
-        $this->api_key = "5b3ce3597851110001cf62489171510fdc0445dc9cbd3440e8727915"; /*env('ORS_API_KEY', null);*/
+        $this->api_key =  env('ORS_API_KEY', null);
     }
 
 
