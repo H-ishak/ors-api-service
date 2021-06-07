@@ -12,15 +12,10 @@ class ComposerStaticInit3ac88063297bffb0702853a368d0dc06
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'h' => 
-        array (
-            'h-ishak\\ors-laravel-api\\' => 24,
-        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -33,6 +28,10 @@ class ComposerStaticInit3ac88063297bffb0702853a368d0dc06
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
         ),
+        'H' => 
+        array (
+            'HIshak\\OrsLaravelApi\\' => 21,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -42,10 +41,6 @@ class ComposerStaticInit3ac88063297bffb0702853a368d0dc06
     );
 
     public static $prefixDirsPsr4 = array (
-        'h-ishak\\ors-laravel-api\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -64,11 +59,16 @@ class ComposerStaticInit3ac88063297bffb0702853a368d0dc06
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'HIshak\\OrsLaravelApi\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

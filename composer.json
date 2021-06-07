@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "h-ishak\\ors-laravel-api\\": "src/"
+            "HIshak\\OrsLaravelApi\\": "src/"
         }
     },
     
