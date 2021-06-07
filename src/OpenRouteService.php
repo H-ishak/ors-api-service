@@ -1,5 +1,5 @@
 <?php
-namespace ishak\OpenRouteService;
+namespace HIshak\OrsLaravelApi;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
