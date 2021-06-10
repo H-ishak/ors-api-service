@@ -52,7 +52,7 @@ class OpenRouteService
      * @param string $start Start coordinate of the route
      * @param string $end Destination coordinate of the route
      * 
-     * @return json $response
+     * @return string $response Json format
      */
     public function getDirections($profil,$start,$end)
     {
@@ -61,7 +61,7 @@ class OpenRouteService
             $url = "/v2/directions/" . $profil;
             return $this->sendRequest($url,"GET",["start" => $start,"end" => $end]); 
         }
-        return "Profile Doesn't exists";
+        return null;
     }
 
 
@@ -75,7 +75,7 @@ class OpenRouteService
      * @param array $coordinates The waypoints to use for the route as an array of longitude/latitude pairs
      * @param string $options all other optional params as described in the ORS documentation "https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/geojson/post"
      * 
-     * @return GeoJSON $response
+     * @return string $response GeoJson format
      */
     public function getDirectionsWithGeoJson($profil,$coordinates,$options = [])
     {
@@ -86,7 +86,7 @@ class OpenRouteService
             $url = "/v2/directions/" . $profil ."/geojson";
             return $this->sendRequest($url,"POST",$options); 
         }
-        return "Profile Doesn't exists";
+        return null;
     }
 
     /**
@@ -99,7 +99,7 @@ class OpenRouteService
      * @param array $coordinates The waypoints to use for the route as an array of longitude/latitude pairs
      * @param string $options all other optional params as described in the ORS documentation "https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/post"
      * 
-     * @return json $response
+     * @return string $response Json format
      */
     public function getDirectionsWithSettings($profil,$coordinates,$options = [])
     {
@@ -110,7 +110,7 @@ class OpenRouteService
             $url = "/v2/directions/" . $profil;
             return $this->sendRequest($url,"POST",$options); 
         }
-        return "Profile Doesn't exists";
+        return null;
     }
 
      /**
@@ -135,7 +135,7 @@ class OpenRouteService
             $url = "/v2/directions/" . $profil . "/gpx";
             return $this->sendRequest($url,"POST",$options); 
         }
-        return "Profile Doesn't exists";
+        return null;
     }
 
 
@@ -172,9 +172,7 @@ class OpenRouteService
             if($response && $response->getStatusCode() == "200")
                 return $response->getBody();
         }
-        catch(Throwable $e){
-            dd($e);
-        }
+        catch(Throwable $e){}
         return null;
     }
 }
