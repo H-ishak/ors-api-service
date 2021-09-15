@@ -24,7 +24,7 @@ class OpenRouteGeocoding extends OpenRouteService
         if (!empty($text)) {
             $options['text'] = $text;
 
-            $url = "/v2/directions/geocode/search";
+            $url = "/geocode/search";
             return $this->sendRequest($url, "GET", $options);
         }
         throw new InvalidArgumentException("text is required");
@@ -47,7 +47,7 @@ class OpenRouteGeocoding extends OpenRouteService
         if (!empty($text)) {
             $options['text'] = $text;
 
-            $url = "/v2/directions/geocode/autocomplete";
+            $url = "/geocode/autocomplete";
             return $this->sendRequest($url, "GET", $options);
         }
         throw new InvalidArgumentException("text is missing");
@@ -69,10 +69,10 @@ class OpenRouteGeocoding extends OpenRouteService
     public function reverseGeocode(float $longitude, float $latitude, array $options = []): string
     {
         if (is_float($longitude) && is_float($latitude)) {
-            $options['latitude'] = $latitude;
-            $options['longitude'] = $longitude;
+            $options['point.lat'] = $latitude;
+            $options['point.lon'] = $longitude;
 
-            $url = "/v2/directions/geocode/autocomplete";
+            $url = "/geocode/autocomplete";
             return $this->sendRequest($url, "GET", $options);
         }
         throw new InvalidArgumentException("longitude and/or latitude are missing");
