@@ -2,13 +2,22 @@
 namespace HIshak\OrsLaravelApi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
+use HIshak\OrsLaravelApi\Exceptions\ForbiddenException;
+use HIshak\OrsLaravelApi\Exceptions\FunctionalityUnsupportedException;
+use HIshak\OrsLaravelApi\Exceptions\IncorrectException;
+use HIshak\OrsLaravelApi\Exceptions\NotFoundException;
+use HIshak\OrsLaravelApi\Exceptions\RequestExceededException;
+use HIshak\OrsLaravelApi\Exceptions\ServerUnavailableException;
+use HIshak\OrsLaravelApi\Exceptions\UnauthorizedException;
+use HIshak\OrsLaravelApi\Exceptions\UnexpectedException;
+use HIshak\OrsLaravelApi\Exceptions\UnSupportedMethodException;
 use ReflectionClass;
-use Throwable;
 
-class OpenRouteService
+
+abstract class OpenRouteService
 {
-
     const PROFIL_DRIVING_CAR = "driving-car";
     const PROFIL_DRIVING_HGV = "driving-hgv";
     const PROFIL_CYCLING_HGV = "cycling-hgv";
@@ -33,116 +42,13 @@ class OpenRouteService
     }
 
 
-    private static function getConstants() {
+    protected static function getConstants() {
         $oClass = new ReflectionClass(__CLASS__);
         return $oClass->getConstants();
     }
 
-    
 
-    /**
-     * Directions Service (GET)
-     * @version v2 
-     * @author h-ishak
-     * Get a basic route between two points with the profile provided. 
-     * Returned response is in GeoJSON format. 
-     * This method does not accept any request body or parameters other than profile, start coordinate, and end coordinate.
-     *
-     * @param string $profil Destination coordinate of the route 
-     * @param string $start Start coordinate of the route
-     * @param string $end Destination coordinate of the route
-     * 
-     * @return string $response Json format
-     */
-    public function getDirections($profil,$start,$end)
-    {
-        if(in_array($profil,self::getConstants()))
-        {
-            $url = "/v2/directions/" . $profil;
-            return $this->sendRequest($url,"GET",["start" => $start,"end" => $end]); 
-        }
-        return null;
-    }
-
-
-    /**
-     * Directions Service (POST)
-     * @version v2 
-     * @author h-ishak
-     * Returns a route between two or more locations for a selected profile and its settings as GeoJSON
-     *
-     * @param string $profil Destination coordinate of the route 
-     * @param array $coordinates The waypoints to use for the route as an array of longitude/latitude pairs
-     * @param string $options all other optional params as described in the ORS documentation "https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/geojson/post"
-     * 
-     * @return string $response GeoJson format
-     */
-    public function getDirectionsWithGeoJson($profil,$coordinates,$options = [])
-    {
-        if(in_array($profil,self::getConstants()) && is_array(current($coordinates)))
-        {
-            $options['coordinates'] = $coordinates;
-            
-            $url = "/v2/directions/" . $profil ."/geojson";
-            return $this->sendRequest($url,"POST",$options); 
-        }
-        return null;
-    }
-
-    /**
-     * Directions Service (POST)
-     * @version v2 
-     * @author h-ishak
-     * Returns a route between two or more locations for a selected profile and its settings as JSON
-     *
-     * @param string $profil Destination coordinate of the route 
-     * @param array $coordinates The waypoints to use for the route as an array of longitude/latitude pairs
-     * @param string $options all other optional params as described in the ORS documentation "https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/post"
-     * 
-     * @return string $response Json format
-     */
-    public function getDirectionsWithSettings($profil,$coordinates,$options = [])
-    {
-        if(in_array($profil,self::getConstants()) && is_array(current($coordinates)))
-        {
-            $options['coordinates'] = $coordinates;
-            
-            $url = "/v2/directions/" . $profil;
-            return $this->sendRequest($url,"POST",$options); 
-        }
-        return null;
-    }
-
-     /**
-     * Directions Service (POST)
-     * @version v2 
-     * @author h-ishak
-     * Returns a route between two or more locations for a selected profile and its settings as GPX. The schema can be found in
-     * "https://raw.githubusercontent.com/GIScience/openrouteservice-schema/master/gpx/v1/ors-gpx.xsd"
-     *
-     * @param string $profil Destination coordinate of the route 
-     * @param array $coordinates The waypoints to use for the route as an array of longitude/latitude pairs
-     * @param string $options all other optional params as described in the ORS documentation "https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/gpx/post"
-     * 
-     * @return gpxRouteElements $response
-     */
-    public function getDirectionsWithGpx($profil,$coordinates,$options = [])
-    {
-        if(in_array($profil,self::getConstants()) && is_array(current($coordinates)))
-        {
-            $options['coordinates'] = $coordinates;
-            
-            $url = "/v2/directions/" . $profil . "/gpx";
-            return $this->sendRequest($url,"POST",$options); 
-        }
-        return null;
-    }
-
-
-
-
-
-    private function sendRequest($endpoint,$method,$params = [])
+    protected function sendRequest($endpoint,$method,$params = [])
     {
         $url = $this->base_url;
         $headers = $this->base_headers;
@@ -172,7 +78,38 @@ class OpenRouteService
             if($response && $response->getStatusCode() == "200")
                 return $response->getBody();
         }
-        catch(Throwable $e){}
-        return null;
+        catch(BadResponseException  $e){
+            switch ($e->getResponse()->getStatusCode()) {
+                case '400':
+                    throw new IncorrectException();
+                    break;
+                case '401':
+                    throw new UnauthorizedException();
+                    break;
+                case '403':
+                    throw new ForbiddenException();
+                    break;
+                case '404':
+                    throw new NotFoundException();
+                    break;
+                case '405':
+                    throw new UnSupportedMethodException();
+                    break;
+                case '413':
+                    throw new RequestExceededException();
+                    break;
+                case '500':
+                    throw new UnexpectedException();
+                    break;
+                case '501':
+                    throw new FunctionalityUnsupportedException();
+                    break;
+                case '503':
+                    throw new ServerUnavailableException();
+                    break;
+            }
+
+        }
     }
+
 }

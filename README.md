@@ -8,6 +8,10 @@ This package allows you to consume OpenRouteService Api using laravel.
 ```cli
 composer require h-ishak/ors-api-service
 ```
+Set  API key in the .env  
+```env
+ORS_API_KEY = some key
+```
 Once installed you can do stuff like this:
 
 ```php
@@ -39,6 +43,9 @@ list of available endpoints functions :
 |getDirectionsWithSettings() | https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/post|
 |getDirectionsWithGeoJson() | https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/geojson/post|
 |getDirectionsWithGpx() | https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/gpx/post|
+|searchGeocode() | https://openrouteservice.org/dev/#/api-docs/geocode/search/get|
+|autocompleteGeocode() | https://openrouteservice.org/dev/#/api-docs/geocode/autocomplete/get|
+|reverseGeocode() | https://openrouteservice.org/dev/#/api-docs/geocode/reverse/get|
 
 
 
