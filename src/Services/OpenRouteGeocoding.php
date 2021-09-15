@@ -1,7 +1,8 @@
 <?php
 
-namespace HIshak\OrsLaravelApi;
+namespace HIshak\OrsLaravelApi\Services;
 
+use HIshak\OrsLaravelApi\OpenRouteService;
 use InvalidArgumentException;
 
 class OpenRouteGeocoding extends OpenRouteService
