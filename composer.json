@@ -13,8 +13,8 @@
     "autoload": {
         "psr-4": {
             "HIshak\\OrsLaravelApi\\": "src/",
-            "HIshak\\OrsLaravelApi\\Exceptions": "src/Exceptions",
-            "HIshak\\OrsLaravelApi\\Services": "src/Services"
+            "HIshak\\OrsLaravelApi\\Exceptions\\": "src/Exceptions",
+            "HIshak\\OrsLaravelApi\\Services\\": "src/Services"
         }
     },
     
