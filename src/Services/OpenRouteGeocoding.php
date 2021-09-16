@@ -72,7 +72,7 @@ class OpenRouteGeocoding extends OpenRouteService
             $options['point.lat'] = $latitude;
             $options['point.lon'] = $longitude;
 
-            $url = "/geocode/autocomplete";
+            $url = "/geocode/reverse";
             return $this->sendRequest($url, "GET", $options);
         }
         throw new InvalidArgumentException("longitude and/or latitude are missing");
