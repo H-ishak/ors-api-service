@@ -1,4 +1,11 @@
 # ors-api-service
+[![Downloads](https://img.shields.io/packagist/dt/h-ishak/ors-api-service.svg?style=flat-square]())]()
+[![Version](https://img.shields.io/packagist/v/h-ishak/ors-api-service.svg?style=flat-square]())]()
+[![Forks](https://img.shields.io/github/forks/h-ishak/ors-api-service.svg?style=flat-square]())]()
+[![Stars](https://img.shields.io/github/stars/h-ishak/ors-api-service.svg?style=flat-square]())]()
+[![License](https://img.shields.io/github/license/H-ishak/ors-api-service.svg?style=flat-square]())]()
+
+
 a simple Laravel package for the OpenRouteService Api
 
 ## Installation, and Usage Instructions
