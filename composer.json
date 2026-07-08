@@ -19,8 +19,8 @@
     },
     
     "require": {
-        "php": ">=7.4",
-        "guzzlehttp/guzzle": "*",
-        "symfony/psr-http-message-bridge":"*"
+        "php": "^7.4 || ^8.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "symfony/psr-http-message-bridge": "^2.1 || ^7.0"
     }
 }
